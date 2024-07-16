@@ -1,0 +1,9 @@
+{
+  "id": "snipd-note-renamer",
+  "name": "Snipd Note Renamer",
+  "version": "1.0.0",
+  "minAppVersion": "0.15.0",
+  "description": "Renames files based on their first heading",
+  "author": "David Mansaray",
+  "isDesktopOnly": false
+}
