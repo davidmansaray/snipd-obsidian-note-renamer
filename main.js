@@ -5,12 +5,12 @@ const FOLDER_PATH = 'Sources/Snipd';
 class HeadingToFilenamePlugin extends Plugin {
   async onload() {
     console.log('Loading HeadingToFilenamePlugin');
-    
+
     // Handle file modifications
     this.registerEvent(
       this.app.vault.on('modify', (file) => this.handleFile(file))
     );
-    
+
     // Handle new file creations
     this.registerEvent(
       this.app.vault.on('create', (file) => this.handleFile(file))
@@ -29,7 +29,7 @@ class HeadingToFilenamePlugin extends Plugin {
         if (file.name !== newName) {
           console.log('Renaming file to:', newName);
           await this.app.fileManager.renameFile(file, `${file.parent.path}/${newName}`);
-          
+
           // Remove the first heading from the content
           content = this.removeFirstHeading(content);
           await this.app.vault.modify(file, content);
@@ -50,7 +50,7 @@ class HeadingToFilenamePlugin extends Plugin {
 
   sanitizeFileName(name) {
     return name
-      .replace(/[/\\?%*:|"<>]/g, '') // Remove characters not allowed in filenames
+      .replace(/[/\\#?%*:|"<>]/g, '') // Remove characters not allowed in filenames
       .replace(/\s+/g, ' ')          // Replace multiple spaces with a single space
       .trim();                       // Remove leading and trailing spaces
   }
